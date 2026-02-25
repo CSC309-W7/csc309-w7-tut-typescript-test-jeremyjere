@@ -8,7 +8,7 @@ export const apiResponse: unknown = [
 ];
 
 export function getUsersData(): User[] {
-  for (const item of apiResponse as any[]) {
+  for (const item of apiResponse as User[]) {
     if (typeof item.age == "string") {
       item.age = Number(item.age); // attempt to fix invalid age
     }
