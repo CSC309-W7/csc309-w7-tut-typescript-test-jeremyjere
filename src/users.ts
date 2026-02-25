@@ -1,3 +1,4 @@
+import { it } from "node:test";
 import type { User } from "./types";
 
 export const apiResponse: unknown = [
@@ -7,6 +8,11 @@ export const apiResponse: unknown = [
 ];
 
 export function getUsersData(): User[] {
+  for (const item of apiResponse as any[]) {
+    if (typeof item.age == "string") {
+      item.age = Number(item.age); // attempt to fix invalid age
+    }
+  }
   return apiResponse as User[]; // intentionally unsafe
 }
 
